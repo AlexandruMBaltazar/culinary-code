@@ -20,10 +20,7 @@ def getProjectVersion = loadVersion().getVersionForProject()
 
 spotless {
     java {
-//            googleJavaFormat("1.15.0")
-//            indentWithTabs(2)
-//            indentWithSpaces(4)
-        ratchetFrom 'origin/master'
+        ratchetFrom 'origin/main'
         target '**/src/**/java/**/*.java'
         toggleOffOn('@formatter:off', '@formatter:on')
         removeUnusedImports()
@@ -93,6 +90,13 @@ subprojects {
 
     test {
         useJUnitPlatform()
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
     }
 
     //Upload/publish artifiacts
