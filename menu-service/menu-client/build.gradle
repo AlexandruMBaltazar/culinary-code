@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.culinarycode.menuservice.client'
+version = '20231117.1024.54'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}

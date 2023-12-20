@@ -1,0 +1,32 @@
+# root project files
+**/.classpath
+**/.project
+**/.settings/
+
+# maven and java
+**/target/
+**/tmp/
+**/logs/
+*.class
+dump.rdb
+*.xml.versionsBackup
+
+# Generated
+**/jgiven-reports/
+
+# osx
+.DS_Store
+
+**/*.iml
+**/.idea
+
+
+.gradle/
+build/
+out/
+
+# jenv
+.java-version
+
+# VSCode
+bin/
