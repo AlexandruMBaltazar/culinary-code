@@ -3,4 +3,5 @@ include 'menu-service'
 include 'menu-service:menu-server'
 include 'eureka-server'
 include 'menu-service:menu-client'
+include 'common:common-service'
 

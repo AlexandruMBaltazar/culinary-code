@@ -64,6 +64,7 @@ subprojects {
     apply plugin: "com.diffplug.spotless"
 
     dependencies {
+        implementation "com.fasterxml.jackson.core:jackson-databind:${versions.jacksonDatabindVersion}"
         implementation "org.mapstruct:mapstruct:${versions.mapstructVersion}"
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
