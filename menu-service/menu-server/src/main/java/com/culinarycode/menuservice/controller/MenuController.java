@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,7 @@ import com.culinarycode.menuservice.client.dto.MenuResponse;
 import com.culinarycode.menuservice.service.MenuService;
 
 @RestController
-@RequestMapping("/api/v1/menus")
+@RequestMapping("/api/v1/restaurants/{restaurantId}/menus")
 public class MenuController {
 
 	private final MenuService menuService;
@@ -24,8 +25,10 @@ public class MenuController {
 	}
 
 	@PostMapping
-	public ResponseEntity<MenuResponse> createMenu( @Valid @RequestBody final MenuRequest menuRequest ) {
-		return new ResponseEntity<>( menuService.createMenu( menuRequest ), HttpStatus.CREATED );
+	public ResponseEntity<MenuResponse> createMenu(
+			@PathVariable("restaurantId") final Long restaurantId,
+			@Valid @RequestBody final MenuRequest menuRequest ) {
+		return new ResponseEntity<>( menuService.createMenu( menuRequest, restaurantId ), HttpStatus.CREATED );
 	}
 
 }

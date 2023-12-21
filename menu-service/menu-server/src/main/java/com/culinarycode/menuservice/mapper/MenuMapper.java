@@ -13,7 +13,8 @@ import com.culinarycode.menuservice.client.model.Menu;
 public interface MenuMapper {
 
 	@Mapping(target = "id", ignore = true)
-	Menu menuRequestToMenu( final MenuRequest menuRequest );
+	@Mapping(target = "restaurantId", source = "restaurantId")
+	Menu menuRequestToMenu( final MenuRequest menuRequest, final Long restaurantId );
 
 	MenuResponse menuToMenuResponse( final Menu menu );
 

@@ -5,6 +5,6 @@ import com.culinarycode.menuservice.client.dto.MenuResponse;
 
 public interface MenuService {
 
-	MenuResponse createMenu( final MenuRequest menuRequest );
+	MenuResponse createMenu( final MenuRequest menuRequest, final Long restaurantId );
 
 }
