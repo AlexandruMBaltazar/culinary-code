@@ -11,4 +11,6 @@ public interface MenuService {
 
 	List<MenuResponse> getAllMenus( final Long restaurantId );
 
+	MenuResponse updateMenu( final MenuRequest menuRequest, final Long menuId, final Long restaurantId );
+
 }

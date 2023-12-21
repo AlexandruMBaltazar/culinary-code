@@ -16,6 +16,10 @@ public interface MenuMapper {
 	@Mapping(target = "restaurantId", source = "restaurantId")
 	Menu menuRequestToMenu( final MenuRequest menuRequest, final Long restaurantId );
 
+	@Mapping(target = "id", source = "menuId")
+	@Mapping(target = "restaurantId", source = "restaurantId")
+	Menu updateMenuRequestToMenu( final MenuRequest menuRequest, final Long menuId, final Long restaurantId );
+
 	MenuResponse menuToMenuResponse( final Menu menu );
 
 }

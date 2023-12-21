@@ -3,8 +3,10 @@ package com.culinarycode.menuservice.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.culinarycode.commonservice.exception.GlobalApiRequestException;
 import com.culinarycode.menuservice.client.dto.MenuRequest;
 import com.culinarycode.menuservice.client.dto.MenuResponse;
 import com.culinarycode.menuservice.client.model.Menu;
@@ -35,6 +37,17 @@ public class MenuServiceImpl implements MenuService {
 				.stream()
 				.map( menuMapper::menuToMenuResponse )
 				.collect( Collectors.toList() );
+	}
+
+	@Override
+	public MenuResponse updateMenu( final MenuRequest menuRequest, final Long menuId, final Long restaurantId ) {
+		if ( !menuRepository.existsByIdAndRestaurantId( menuId, restaurantId ) ) {
+			throw new GlobalApiRequestException( "Menu does not exist", HttpStatus.NOT_FOUND );
+		}
+
+		final Menu updatedMenu =
+				menuRepository.save( menuMapper.updateMenuRequestToMenu( menuRequest, menuId, restaurantId ) );
+		return menuMapper.menuToMenuResponse( updatedMenu );
 	}
 
 }
