@@ -13,6 +13,8 @@ ext.versions = [
         springBoot        : '3.1.5',
         springCloudVersion: '2022.0.3',
         springCloud       : '2022.0.3',
+        jacksonDatabindVersion: '2.16.0',
+        mapstructVersion: '1.5.5.Final'
 ]
 
 apply from: 'version.gradle'
@@ -62,9 +64,11 @@ subprojects {
     apply plugin: "com.diffplug.spotless"
 
     dependencies {
+        implementation "org.mapstruct:mapstruct:${versions.mapstructVersion}"
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
         annotationProcessor 'org.projectlombok:lombok'
+        annotationProcessor "org.mapstruct:mapstruct-processor:${versions.mapstructVersion}"
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 
