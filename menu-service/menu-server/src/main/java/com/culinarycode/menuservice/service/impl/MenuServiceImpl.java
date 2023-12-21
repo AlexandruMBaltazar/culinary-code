@@ -1,5 +1,8 @@
 package com.culinarycode.menuservice.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import com.culinarycode.menuservice.client.dto.MenuRequest;
@@ -24,6 +27,14 @@ public class MenuServiceImpl implements MenuService {
 	public MenuResponse createMenu( final MenuRequest menuRequest, final Long restaurantId ) {
 		final Menu createdMenu = menuRepository.save( menuMapper.menuRequestToMenu( menuRequest, restaurantId ) );
 		return menuMapper.menuToMenuResponse( createdMenu );
+	}
+
+	@Override
+	public List<MenuResponse> getAllMenus( final Long restaurantId ) {
+		return menuRepository.findByRestaurantId( restaurantId )
+				.stream()
+				.map( menuMapper::menuToMenuResponse )
+				.collect( Collectors.toList() );
 	}
 
 }

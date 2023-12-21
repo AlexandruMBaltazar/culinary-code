@@ -1,9 +1,12 @@
 package com.culinarycode.menuservice.controller;
 
+import java.util.List;
+
 import jakarta.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +32,11 @@ public class MenuController {
 			@PathVariable("restaurantId") final Long restaurantId,
 			@Valid @RequestBody final MenuRequest menuRequest ) {
 		return new ResponseEntity<>( menuService.createMenu( menuRequest, restaurantId ), HttpStatus.CREATED );
+	}
+
+	@GetMapping
+	public ResponseEntity<List<MenuResponse>> getAllMenus( @PathVariable("restaurantId") final Long restaurantId ) {
+		return new ResponseEntity<>( menuService.getAllMenus( restaurantId ), HttpStatus.OK );
 	}
 
 }
